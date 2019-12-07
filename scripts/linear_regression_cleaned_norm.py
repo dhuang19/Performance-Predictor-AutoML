@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn import linear_model
 
+# LINEAR REGRESSION ON CLEANED, NORMALIZED DATA
+
 # Open cleaned training data
 data = pd.read_csv("/home/diana/Desktop/Performance-Predictor-AutoML/data/cleaned_training_data_norm.csv")
 
@@ -31,12 +33,12 @@ col2 = np.empty(952, dtype=float)
 pred_row_idx = 0
 for i in range(952):
     #print("i : " +  str(i) + "  pred_row_idx : " + str(pred_row_idx))
-    # At odd idx...val_error
+    # At odd idx...train_error
     if ((i%2) != 0):
         col1[i] = "test_"+ str(pred_row_idx) + "_train_error"
         col2[i] = pred[pred_row_idx][1]
         pred_row_idx = pred_row_idx+1
-    # At even idx...train_error
+    # At even idx...val_error
     else:
         col1[i] = "test_"+ str(pred_row_idx) + "_val_error"
         col2[i] = pred[pred_row_idx][0]
