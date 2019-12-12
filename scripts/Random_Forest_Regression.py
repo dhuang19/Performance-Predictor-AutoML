@@ -3,11 +3,11 @@ import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import explained_variance_score
 
-X = pd.read_csv('../data/cleaned_training_data_norm.csv')
-y = pd.read_csv('../data/cleaned_training_data_labels_norm.csv')
+X = pd.read_csv('../data/cleaned_training_data_norm_stats.csv')
+y = pd.read_csv('../data/cleaned_training_data_labels_norm_stats.csv')
 y = np.array(y)[:,1:]
 
-test_data = pd.read_csv('../data/cleaned_testing_data_norm.csv')
+test_data = pd.read_csv('../data/cleaned_testing_data_norm_stats.csv')
 
 #create and train model
 model_val_error = RandomForestRegressor(n_estimators=100)
@@ -21,7 +21,6 @@ model_train_error.fit(X, y[:, 1])
 pred_train_error = model_train_error.predict(test_data)
 
 pred = np.stack((pred_val_error, pred_train_error), axis=1)
-print(np.shape(pred))
 
 
 # Put into csv file
